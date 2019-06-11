@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func countWords(s string) {
+func countWords(s string) map[string]int {
 
 	type storage struct {
 		Key   string
@@ -39,13 +39,15 @@ func countWords(s string) {
 	})
 
 	// Output the first 10 values
+	mapOut := make(map[string]int)
 	for i, w := range mapWords {
 		i++
 		if i > 10 {
 			break
 		}
-		fmt.Println(w.Key, w.Value)
+		mapOut[w.Key] = w.Value
 	}
+	return mapOut
 }
 
 func main() {
@@ -56,5 +58,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	countWords(string(s))
+	fmt.Println(countWords(string(s)))
 }
