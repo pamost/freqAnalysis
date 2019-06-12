@@ -6,10 +6,11 @@ import (
 	"log"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 )
 
-func countWords(s string) map[string]int {
+func countWords(s string) []string {
 
 	type storage struct {
 		Key   string
@@ -38,16 +39,12 @@ func countWords(s string) map[string]int {
 		return mapWords[i].Value > mapWords[j].Value
 	})
 
-	// Output the first 10 values
-	mapOut := make(map[string]int)
-	for i, w := range mapWords {
-		i++
-		if i > 10 {
-			break
-		}
-		mapOut[w.Key] = w.Value
+	//Output the first 10 values
+	res := []string{}
+	for _, w := range mapWords[:10] {
+		res = append(res, strconv.Itoa(w.Value)+":"+w.Key)
 	}
-	return mapOut
+	return res
 }
 
 func main() {
