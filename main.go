@@ -41,7 +41,10 @@ func countWords(s string) []string {
 
 	//Output the first 10 values
 	res := []string{}
-	for _, w := range mapWords[:10] {
+	for i, w := range mapWords {
+		if i > 9 {
+			break
+		}
 		res = append(res, strconv.Itoa(w.Value)+":"+w.Key)
 	}
 	return res
